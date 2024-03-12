@@ -12,6 +12,7 @@
     padding: 15px;
     margin: 10px;
     overflow-y: auto;
+    scrollbar-width: thin;
 
 }
 
@@ -35,4 +36,8 @@ body{
 
 .badge{
     font-weight: 450;
+}
+
+.card{
+    margin-bottom: 5px;
 }

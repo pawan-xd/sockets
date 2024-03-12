@@ -1,23 +1,42 @@
-const ws = new WebSocket("ws://localhost:3000");
-
-ws.addEventListener("open", () => {
-	alert("Connection established");
-});
+const ws = new WebSocket("ws://192.168.0.101:3000");
 
 // ws.addEventListener("message", (event) => {
 //     console.log("Received:", event.data);
-// });
+// }); below is the alternative way to do the same thing
 
-ws.onmessage = (event) => {
-	console.log("Received:", event.data);
-};
+const username = prompt("Enter name")
 
 const sendButton = document.getElementById("sendButton");
 const textArea = document.getElementById("textArea");
+const convoArea = document.getElementById("conversation");
+
+ws.onmessage = (event) => {
+	const data = JSON.parse(event.data);
+
+	let newCard = document.createElement("div");
+	newCard.classList.add("card");
+	newCard.innerHTML = `<div class="card-body">
+	    <h6 class="card-title">${data.name}</h6>
+	    <p class="card-text">
+	        ${data.txt}
+	        <span class="badge text-bg-light float-end">
+	            <em>${data.time}</em>
+	        </span>
+	    </p>
+	</div>`;
+
+	convoArea.appendChild(newCard);
+    convoArea.scrollTop = convoArea.scrollHeight;
+};
 
 sendButton.addEventListener("click", () => {
-	let message = textArea.textContent;
-	console.log(message);
-	ws.send(message);
+	let x = new Date();
+	let message = {
+		txt: textArea.textContent,
+		name: username,
+		time: x.getHours() + ":" + x.getMinutes(),
+	};
+
+	ws.send(JSON.stringify(message));
 	textArea.textContent = "";
 });

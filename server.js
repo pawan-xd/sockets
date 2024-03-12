@@ -5,8 +5,9 @@ server.on("connection", function connection(ws){
     console.log("conenction establised with client");
     
     ws.on("message", (data)=>{
-        console.log("recieved: ", data.toString());
-        ws.send("reply message from server");
+        server.clients.forEach((client)=>{
+            client.send(JSON.stringify(JSON.parse(data)));
+        })    
     })
 
     ws.on("close", ()=>{
