@@ -13,19 +13,21 @@
 			crossorigin="anonymous"
 		/>
 
-        <link rel="stylesheet" href="sign-in.css">
+		<link rel="stylesheet" href="sign-in.css" />
 	</head>
 	<body class="d-flex align-items-center py-4 bg-body-tertiary">
 		<main class="form-signin w-100 m-auto">
 			<form action="/reg" method="post">
-				
-				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+				<h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
 				<div class="form-floating">
 					<input
+						required
+						minlength="1"
+						maxlength="15"
 						type="text"
 						class="form-control"
-                        name="username"
+						name="username"
 						id="nameInput"
 						placeholder="name"
 					/>
@@ -33,20 +35,21 @@
 				</div>
 				<div class="form-floating">
 					<input
+						required
+						minlength="4"
+						maxlength="16"
 						type="password"
 						class="form-control"
-                        name="password"
+						name="password"
 						id="passInput"
 						placeholder="Password"
 					/>
 					<label for="passInput">Password</label>
 				</div>
 
-				
 				<button class="btn btn-primary w-100 py-2" type="submit">
-					Sign in
+					Sign up
 				</button>
-				
 			</form>
 		</main>
 		<script
