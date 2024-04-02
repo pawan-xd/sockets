@@ -13,7 +13,8 @@ router.post("/reg", async function (req, res) {
 		const { username, password } = req.body;
 		console.log("Credentials received:", username, password);
 		await createUser(username, password);
-		res.send("User created successfully");
+
+		res.redirect("login")
 	} catch (error) {
 		console.error("Error creating user:", error);
 		res.status(500).send("An error occurred");

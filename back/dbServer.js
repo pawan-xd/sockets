@@ -28,4 +28,4 @@ async function createUser(username, password) {
 	await user.save();
 }
 
-module.exports={connectToMongoDB, createUser};
+module.exports={connectToMongoDB, createUser, User};

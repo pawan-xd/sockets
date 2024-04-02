@@ -1,10 +1,8 @@
-const ws = new WebSocket("ws://192.168.0.101:3000");
+const ws = new WebSocket("ws://192.168.0.115:3001");
 
 // ws.addEventListener("message", (event) => {
 //     console.log("Received:", event.data);
 // }); below is the alternative way to do the same thing
-
-const username = prompt("Enter name")
 
 const sendButton = document.getElementById("sendButton");
 const textArea = document.getElementById("textArea");
@@ -33,7 +31,7 @@ sendButton.addEventListener("click", () => {
 	let x = new Date();
 	let message = {
 		txt: textArea.textContent,
-		name: username,
+		name: localStorage.getItem("name"),
 		time: x.getHours() + ":" + x.getMinutes(),
 	};
 

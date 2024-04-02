@@ -1,8 +1,10 @@
 User Registration: Completed. Users can now register with a username and password, which are stored in the MongoDB database. 
 DONE
 
+Login Functionality: Develop a login page where registered users can enter their credentials to access the chat application.
+DONE
+
 Persistent Sessions: Implement a session management system to keep users logged in even after refreshing the page. This involves creating sessions for authenticated users and storing session tokens in cookies.
 
-Login Functionality: Develop a login page where registered users can enter their credentials to access the chat application.
 
 Message Storage: Store chat messages in the database to ensure message history is maintained even after page refreshes. This involves creating a schema for chat messages and updating the application logic to handle message storage and retrieval.
