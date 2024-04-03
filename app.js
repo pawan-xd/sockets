@@ -70,7 +70,8 @@ async function startServer() {
 	const server = new WebSocket.Server({ host: "0.0.0.0", port: 3001 });
 
 	server.on('listening', () => {
-		console.log('WebSocket server started successfully');
+		const address = server.address();
+		console.log(`WebSocket server is running at ${address.address}:${address.port}`);
 	});
 
 	server.on('error', (error) => {
