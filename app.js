@@ -67,9 +67,15 @@ async function startServer() {
 	app.listen(port, "0.0.0.0", function () {
 		console.log("Express server started on port 3000");
 	});
-	const server = new WebSocket.Server({ port: 3001 });
+	const server = new WebSocket.Server({ host: "0.0.0.0", port: 3001 });
 
-	console.log("web socket server has started");
+	server.on('listening', () => {
+		console.log('WebSocket server started successfully');
+	});
+
+	server.on('error', (error) => {
+		console.error('WebSocket server failed to start:', error);
+	});
 
 	server.on("connection", function connection(ws) {
 		console.log("conenction establised with client");
