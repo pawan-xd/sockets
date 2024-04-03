@@ -1,4 +1,4 @@
-const ws = new WebSocket("wss://192.168.0.115:3001");
+const ws = new WebSocket("wss://localhost:3001");
 
 // ws.addEventListener("message", (event) => {
 //     console.log("Received:", event.data);
