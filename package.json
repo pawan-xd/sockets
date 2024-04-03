@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "node app.js & socket_server.js &"
+		"start": "concurrently \"node app.js\" \"node socket_server.js\""
 	},
 	"dependencies": {
 		"connect-mongodb-session": "^5.0.0",
@@ -9,5 +9,8 @@
 		"express-session": "^1.18.0",
 		"mongoose": "^8.2.2",
 		"ws": "^8.16.0"
+	},
+	"devDependencies": {
+		"concurrently": "^8.2.2"
 	}
 }
