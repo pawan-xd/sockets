@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "node app.js & socket_server.js"
+		"start": "node app.js & socket_server.js &"
 	},
 	"dependencies": {
 		"connect-mongodb-session": "^5.0.0",
