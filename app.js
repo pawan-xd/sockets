@@ -3,6 +3,7 @@ const session = require("express-session");
 const mongoSession = require("connect-mongodb-session")(session);
 const app = express();
 const port = process.env.PORT || 3000;
+const WebSocket = require('ws');
 
 const sessionStore = new mongoSession({
 	uri: "mongodb://mongo:XAogsdKUAXNzIVJekhAEuORhbGKRbCAu@mongodb.railway.internal:27017",
@@ -45,10 +46,9 @@ app.get("/register", (req, res) => {
 	res.render("registration");
 });
 
-
 app.get("/chats", (req, res) => {
 	if (req.session.username) {
-		console.log("successfully entering chats page")
+		console.log("successfully entering chats page");
 		res.render("chats");
 	} else {
 		console.log("redirecting to login");
@@ -57,7 +57,7 @@ app.get("/chats", (req, res) => {
 				throw err;
 			}
 		});
-		res.redirect("login")
+		res.redirect("login");
 	}
 });
 
@@ -66,6 +66,23 @@ async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
 	app.listen(port, "0.0.0.0", function () {
 		console.log("Express server started on port 3000");
+	});
+	const server = new WebSocket.Server({ port: 3001 });
+
+	console.log("web socket server has started");
+
+	server.on("connection", function connection(ws) {
+		console.log("conenction establised with client");
+
+		ws.on("message", (data) => {
+			server.clients.forEach((client) => {
+				client.send(JSON.stringify(JSON.parse(data)));
+			});
+		});
+
+		ws.on("close", () => {
+			console.log("Connection closed");
+		});
 	});
 }
 
