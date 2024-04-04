@@ -1,18 +1,29 @@
-const WebSocket = require('ws');
-const server= new WebSocket.Server({port:3001});
+const WebSocket = require("ws");
 
-console.log("web socket server has started");
+const port = process.env.PORT || 3000;
+const server = new WebSocket.Server({ host: "0.0.0.0", port: port });
 
-server.on("connection", function connection(ws){
-    console.log("conenction establised with client");
-    
-    ws.on("message", (data)=>{
-        server.clients.forEach((client)=>{
-            client.send(JSON.stringify(JSON.parse(data)));
-        })    
-    })
+server.on("listening", () => {
+	const address = server.address();
+	console.log(
+		`WebSocket server is running at ${address.address}:${address.port}`
+	);
+});
 
-    ws.on("close", ()=>{
-        console.log("Connection closed")
-    })
+server.on("error", (error) => {
+	console.error("WebSocket server failed to start:", error);
+});
+
+server.on("connection", function connection(ws) {
+	console.log("conenction establised with client");
+
+	ws.on("message", (data) => {
+		server.clients.forEach((client) => {
+			client.send(JSON.stringify(JSON.parse(data)));
+		});
+	});
+
+	ws.on("close", () => {
+		console.log("Connection closed");
+	});
 });
