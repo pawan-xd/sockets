@@ -21,6 +21,7 @@ app.use(
 
 //mongo db connection function from dbserver
 const { connectToMongoDB } = require("./back/dbServer");
+const setupSocket=require("./socket_server");
 const registerRoute = require("./back/registerRoute");
 const loginRoute = require("./back/loginRoute");
 
@@ -63,6 +64,7 @@ app.get("/chats", (req, res) => {
 // Start the Express server
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
+	setupSocket();
 	app.listen(3000, () => {
 		console.log("Express server started on port 3000");
 	});
