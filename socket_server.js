@@ -1,7 +1,6 @@
 const WebSocket = require('ws');
 
-function setupSocket(){
-const server= new WebSocket.Server({port:3001})
+const server= new WebSocket.Server({port: process.env.PORT, host: "0.0.0.0"})
 
 server.on("connection", function connection(ws){
     console.log("conenction establised with client");
@@ -16,5 +15,3 @@ server.on("connection", function connection(ws){
         console.log("Connection closed")
     })
 });
-}
-module.exports=setupSocket;

@@ -4,7 +4,7 @@ const mongoSession = require("connect-mongodb-session")(session);
 const app = express();
 
 const sessionStore = new mongoSession({
-	uri: "mongodb://localhost:27017/chat",
+	uri: process.env.MONGO_PRIVATE_URL,
 	collection: "sessions",
 });
 
@@ -21,7 +21,6 @@ app.use(
 
 //mongo db connection function from dbserver
 const { connectToMongoDB } = require("./back/dbServer");
-const setupSocket=require("./socket_server");
 const registerRoute = require("./back/registerRoute");
 const loginRoute = require("./back/loginRoute");
 
@@ -64,9 +63,8 @@ app.get("/chats", (req, res) => {
 // Start the Express server
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
-	setupSocket();
-	app.listen(3000, () => {
-		console.log("Express server started on port 3000");
+	app.listen(process.env.PORT,"0.0.0.0", () => {
+		console.log(`Express server started on port ${process.env.PORT}`);
 	});
 }
 
