@@ -5,6 +5,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const setupSocket= require("./socket_server");
 
+//mongo db connection function from dbserver
+const { connectToMongoDB } = require("./back/dbServer");
+const registerRoute = require("./back/registerRoute");
+const loginRoute = require("./back/loginRoute");
+
 const sessionStore = new mongoSession({
 	uri: "mongodb://mongo:XAogsdKUAXNzIVJekhAEuORhbGKRbCAu@mongodb.railway.internal:27017",
 	collection: "sessions",
@@ -20,11 +25,6 @@ app.use(
 		store: sessionStore,
 	})
 );
-
-//mongo db connection function from dbserver
-const { connectToMongoDB } = require("./back/dbServer");
-const registerRoute = require("./back/registerRoute");
-const loginRoute = require("./back/loginRoute");
 
 app.use(express.urlencoded({ extended: true })); //used for extracting data from form (by default its encoded in url)
 
@@ -65,7 +65,7 @@ app.get("/chats", (req, res) => {
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
 	setupSocket();
-	app.listen(port, "0.0.0.0", function () {
+	app.listen(3000, "0.0.0.0", function () {
 		console.log("Express server started on port 3000");
 	});
 }
