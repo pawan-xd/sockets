@@ -1,4 +1,4 @@
-const ws = new WebSocket("wss://socketss.up.railway.app:3001");
+const ws = new WebSocket("wss://socketss.up.railway.app");
 
 // ws.addEventListener("message", (event) => {
 //     console.log("Received:", event.data);

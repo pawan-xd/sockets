@@ -3,7 +3,7 @@ const session = require("express-session");
 const mongoSession = require("connect-mongodb-session")(session);
 const app = express();
 const port = process.env.PORT || 3000;
-const WebSocket = require('ws');
+const setupSocket= require("./socket_server");
 
 const sessionStore = new mongoSession({
 	uri: "mongodb://mongo:XAogsdKUAXNzIVJekhAEuORhbGKRbCAu@mongodb.railway.internal:27017",
@@ -64,32 +64,9 @@ app.get("/chats", (req, res) => {
 // Start the Express server
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
+	setupSocket();
 	app.listen(port, "0.0.0.0", function () {
 		console.log("Express server started on port 3000");
-	});
-	const server = new WebSocket.Server({ host: "0.0.0.0", port: 3001 });
-
-	server.on('listening', () => {
-		const address = server.address();
-		console.log(`WebSocket server is running at ${address.address}:${address.port}`);
-	});
-
-	server.on('error', (error) => {
-		console.error('WebSocket server failed to start:', error);
-	});
-
-	server.on("connection", function connection(ws) {
-		console.log("conenction establised with client");
-
-		ws.on("message", (data) => {
-			server.clients.forEach((client) => {
-				client.send(JSON.stringify(JSON.parse(data)));
-			});
-		});
-
-		ws.on("close", () => {
-			console.log("Connection closed");
-		});
 	});
 }
 
