@@ -65,7 +65,7 @@ app.get("/chats", (req, res) => {
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
 	app.listen(port, "0.0.0.0", function () {
-		console.log("Express server started on port 3000");
+		console.log(`Express server started on port ${port}`);
 	});
 	setupSocket();
 }
