@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const mongoSession = require("connect-mongodb-session")(session);
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT2 || 3000;
 const setupSocket= require("./socket_server");
 
 //mongo db connection function from dbserver

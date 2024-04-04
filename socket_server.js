@@ -1,7 +1,7 @@
 const WebSocket = require("ws");
 
 function setupSocket() {
-	const port = process.env.PORT || 3000;
+	const port = process.env.PORT1 || 8080;
 	const server = new WebSocket.Server({ host: "0.0.0.0", port: port });
 
 	server.on("listening", () => {
