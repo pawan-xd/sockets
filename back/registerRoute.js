@@ -5,7 +5,7 @@ const {createUser} = require("./dbServer.js")
 
 // Define route for user registration
 
-router.post("/reg", async function (req, res) {
+router.post("/register", async function (req, res) {
 	console.log("Received POST request to /register");
 	try {
 

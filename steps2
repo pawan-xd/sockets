@@ -9,3 +9,16 @@ DONE
 
 
 Message Storage: Store chat messages in the database to ensure message history is maintained even after page refreshes. This involves creating a schema for chat messages and updating the application logic to handle message storage and retrieval.
+
+    Database Schema Design:
+
+    Design a schema to represent chat messages. Consider including fields such as message content, sender, timestamp, and any other relevant information.
+    WebSocket Server Integration:
+
+    Modify your WebSocket server code to handle incoming messages from clients. Upon receiving a new message, save it to the database using the defined schema.
+    Database Operations:
+
+    Implement database operations in your WebSocket server code to save messages to the database. This involves creating, updating, and deleting chat messages as necessary.
+    Client-Side Changes:
+
+    Update your client-side code to handle the display of chat messages retrieved from the server. When the chat page loads, fetch the chat history from the server and display it to the user.
