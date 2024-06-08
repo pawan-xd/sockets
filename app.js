@@ -4,7 +4,7 @@ const mongoSession = require("connect-mongodb-session")(session);
 const app = express();
 
 const sessionStore = new mongoSession({
-	uri: "mongodb+srv://kitrowan07:xS6AuCWtBI3IuZJc@cluster0.arb120b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/chat",
+	uri: process.env.mongoURI,
 	collection: "sessions",
 });
 

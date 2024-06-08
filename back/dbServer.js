@@ -1,6 +1,6 @@
 // Import required modules
 const mongoose = require("mongoose");
-const uri=`mongodb+srv://kitrowan07:xS6AuCWtBI3IuZJc@cluster0.arb120b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/chat`
+const uri=process.env.mongoURI
 // Define Mongoose schema and model for users
 const userSchema = new mongoose.Schema({
 	username: {
