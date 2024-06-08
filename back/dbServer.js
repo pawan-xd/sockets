@@ -1,6 +1,6 @@
 // Import required modules
 const mongoose = require("mongoose");
-
+const uri=`mongodb+srv://kitrowan07:xS6AuCWtBI3IuZJc@cluster0.arb120b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/chat`
 // Define Mongoose schema and model for users
 const userSchema = new mongoose.Schema({
 	username: {
@@ -22,7 +22,7 @@ const Message = mongoose.model("Message", messageSchema);  // Create the Message
 // Connect to MongoDB
 async function connectToMongoDB() {
 	try {
-		await mongoose.connect("mongodb://localhost:27017/chat");
+		await mongoose.connect(uri);
 		console.log("Connected to MongoDB");
 	} catch (error) {
 		console.error("Error connecting to MongoDB:", error);
