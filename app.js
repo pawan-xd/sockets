@@ -21,10 +21,9 @@ app.use(
 
 //mongo db connection function from dbserver
 const { connectToMongoDB } = require("./back/dbServer");
-const setupSocket=require("./socket_server");
 const registerRoute = require("./back/registerRoute");
 const loginRoute = require("./back/loginRoute");
-const messageHistory= require("./back/messageHistory");
+const messageHistory = require("./back/messageHistory");
 
 app.use(express.urlencoded({ extended: true })); //used for extracting data from form (by default its encoded in url)
 
@@ -47,10 +46,9 @@ app.get("/register", (req, res) => {
 	res.render("registration");
 });
 
-
-app.get("/chats", function sessionChecker(req, res){
+app.get("/chats", function sessionChecker(req, res) {
 	if (req.session.username) {
-		console.log("successfully entering chats page")
+		console.log("successfully entering chats page");
 		res.render("chats");
 	} else {
 		console.log("redirecting to login");
@@ -59,15 +57,14 @@ app.get("/chats", function sessionChecker(req, res){
 				throw err;
 			}
 		});
-		res.redirect("login")
+		res.redirect("login");
 	}
 });
-
 
 // Start all servers
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
-	setupSocket(); //starts the websocket server
+	// setupSocket(); //starts the websocket server
 	app.listen(3000, () => {
 		console.log("Express server started on port 3000");
 	});
