@@ -32,7 +32,7 @@ function setupSocket() {
 
 			//this function saves the message into the database along with the sender name and message timing
 			try{
-
+				console.log(msgg);
 				saveMessage(msgg.txt, msgg.name, msgg.timestamp);
 			}
 			catch(error){
