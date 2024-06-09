@@ -1,4 +1,4 @@
-const ws = new WebSocket("wss://https://socketsserver.onrender.com");
+const ws = new WebSocket("wss://socketsserver.onrender.com");
 
 // ws.addEventListener("message", (event) => {
 //     console.log("Received:", event.data);
