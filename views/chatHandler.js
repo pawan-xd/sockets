@@ -67,6 +67,7 @@ textArea.addEventListener("keyup", (event) => {
 
 async function pastMessageLoader() {
 	try {
+		console.log("fetching old messages")
 		const response = await fetch("/messageHistory", { method: "POST" });
 
 		let data = await response.json();

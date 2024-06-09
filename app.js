@@ -65,7 +65,7 @@ app.get("/chats", function sessionChecker(req, res) {
 async function startServer() {
 	await connectToMongoDB(); // Connect to MongoDB before starting the server
 	// setupSocket(); //starts the websocket server
-	app.listen(3000, () => {
+	app.listen(process.env.PORT, () => {
 		console.log("Express server started on port 3000");
 	});
 }

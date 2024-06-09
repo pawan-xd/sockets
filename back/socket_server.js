@@ -3,7 +3,7 @@ const { saveMessage } = require("./dbServer");
 
 //this file is for starting the backend socket server on port 3001
 function setupSocket() {
-	const server = new WebSocket.Server({ port: 3001 });
+	const server = new WebSocket.Server({ port: process.env.PORT });
 
 	let connectedClients = 0;
 
