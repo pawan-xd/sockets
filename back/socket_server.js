@@ -31,7 +31,14 @@ function setupSocket() {
 			let msgg = JSON.parse(data);
 
 			//this function saves the message into the database along with the sender name and message timing
-			saveMessage(msgg.txt, msgg.name, msgg.timestamp);
+			try{
+
+				saveMessage(msgg.txt, msgg.name, msgg.timestamp);
+			}
+			catch(error){
+				console.log(error)
+			}
+
 			server.clients.forEach((client) => {
 				client.send(JSON.stringify(JSON.parse(data)));
 			});
